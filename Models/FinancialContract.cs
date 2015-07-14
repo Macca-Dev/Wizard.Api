@@ -3,7 +3,7 @@ using Wizard.Api.Contracts;
 
 namespace Wizard.Api.Models
 {
-    public class FinancialContract : JsonSerializable
+    public class FinancialContract : WizardContract
     {
         public string TaxNumber { get; set; }
         public string TaxRate { get; set; }

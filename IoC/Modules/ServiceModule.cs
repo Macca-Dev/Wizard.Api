@@ -9,7 +9,7 @@ namespace Wizard.Api.IoC.Modules
         public override void Load()
         {
             Bind<IEmailService>().To<EmailService>().InSingletonScope();
-            Bind<IAzureAdapter>().To<AzureAdapter>().InSingletonScope();
+            Bind<IStorageAdapter>().To<AzureStorageAdapter>().InSingletonScope();
         }
     }
 }

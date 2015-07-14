@@ -2,7 +2,7 @@
 
 namespace Wizard.Api.Models
 {
-    public class StableChargeType : JsonSerializable
+    public class StableChargeType : WizardContract
     {
         public long Id { get; set; }
         public string Description { get; set; }

@@ -2,8 +2,7 @@
 
 namespace Wizard.Api.Models
 {
-    public class EmailContract : JsonSerializable
+    public class EmailContract : WizardContract
     {
-        public string Email { get; set; } 
     }
 }

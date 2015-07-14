@@ -6,17 +6,17 @@ using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Wizard.Api.Adapters
 {
-    public interface IAzureAdapter
+    public interface IStorageAdapter
     {
-        Task<string> DownloadTextAsync(string fileName);
-        Task UploadTextAsync(string fileName, string valueToUpload);
+        Task<string> DownloadTextAsync(string fileName, string containerName);
+        Task UploadTextAsync(string fileName, string valueToUpload, string containerName);
     }
 
-    public class AzureAdapter : IAzureAdapter
+    public class AzureStorageAdapter : IStorageAdapter
     {
-        public async Task<string> DownloadTextAsync(string fileName)
+        public async Task<string> DownloadTextAsync(string fileName, string containerName)
         {
-            var blob = await GetBlockBlob(fileName);
+            var blob = await GetBlockBlob(fileName, containerName);
             
             using (Stream stream = new MemoryStream())
             {
@@ -31,9 +31,9 @@ namespace Wizard.Api.Adapters
             }
         }
 
-        public async Task UploadTextAsync(string fileName, string valueToUpload)
+        public async Task UploadTextAsync(string fileName, string valueToUpload, string containerName)
         {
-            var blob = await GetBlockBlob(fileName);
+            var blob = await GetBlockBlob(fileName, containerName);
             
             using (var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(valueToUpload)))
             {
@@ -42,17 +42,17 @@ namespace Wizard.Api.Adapters
             }
         }
 
-        private static async Task<ICloudBlob> GetBlockBlob(string fileName)
+        private static async Task<ICloudBlob> GetBlockBlob(string fileName, string containerName)
          {
-             var container = await GetContainer();
+             var container = await GetContainer(containerName);
              return container.GetBlockBlobReference(fileName);
          }
 
-        private static async Task<CloudBlobContainer> GetContainer()
+        private static async Task<CloudBlobContainer> GetContainer(string containerName)
         {
             var account = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(Codes.Azure.ConnectionStrings.ConnectionStringName));
             var blobClient = account.CreateCloudBlobClient();
-            var container = blobClient.GetContainerReference(Codes.Azure.Containers.WizardModel);
+            var container = blobClient.GetContainerReference(containerName);
 
             container.CreateIfNotExists();
             return container;

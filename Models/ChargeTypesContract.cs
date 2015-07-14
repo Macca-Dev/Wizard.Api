@@ -3,7 +3,7 @@ using Wizard.Api.Contracts;
 
 namespace Wizard.Api.Models
 {
-    public class ChargeTypesContract : JsonSerializable
+    public class ChargeTypesContract : WizardContract
     {
         public IEnumerable<StableChargeType> StableChargeTypes { get; set; }
         public IEnumerable<StandardChargeType> StandardChargeTypes { get; set; }

@@ -2,9 +2,8 @@
 
 namespace Wizard.Api.Models
 {
-    public class StableContract : JsonSerializable
+    public class StableContract : WizardContract
     {
-        public string StableName { get; set; }
         public string RacingCode { get; set; }
         public string Trainer { get; set; }
         public string LegalEntity { get; set; }

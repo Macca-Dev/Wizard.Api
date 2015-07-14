@@ -12,21 +12,21 @@ namespace Wizard.Api.Services
 
     public class EmailService : IEmailService
     {
-        private readonly IAzureAdapter _azure;
+        private readonly IStorageAdapter _storage;
 
-        public EmailService(IAzureAdapter azure)
+        public EmailService(IStorageAdapter storage)
         {
-            _azure = azure;
+            _storage = storage;
         }
 
         public async Task StoreEmail(string fileName, string email)
         {
             var emailToSave = new EmailContract
                 {
-                    Email = email
+                    StableEmail = email
                 };
 
-            await _azure.UploadTextAsync(fileName, emailToSave.ToJson<EmailContract>());
+            await _storage.UploadTextAsync(fileName, emailToSave.ToJson<EmailContract>(), Codes.Azure.Containers.WizardModel);
         }
     }
 }

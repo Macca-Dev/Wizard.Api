@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Wizard.Api.Contracts;
 
 namespace Wizard.Api.Models
 {
-    public class HorseOwnershipContract : JsonSerializable
+    public class HorseOwnershipContract : WizardContract
     {
         public long Id { get; set; }
         public long HorseId { get; set; }
