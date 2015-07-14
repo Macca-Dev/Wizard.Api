@@ -26,7 +26,7 @@ namespace Wizard.Api.Services
                     StableEmail = email
                 };
 
-            await _storage.UploadTextAsync(fileName, emailToSave.ToJson<EmailContract>(), Codes.Azure.Containers.WizardModel);
+            await _storage.UploadTextAsync(fileName, emailToSave.ToJson<EmailContract>(), Codes.Azure.Containers.Stable);
         }
     }
 }
