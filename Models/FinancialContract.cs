@@ -1,5 +1,5 @@
 ﻿using System;
-using Wizard.Api.Contracts;
+using Wizard.Api.Extensions;
 
 namespace Wizard.Api.Models
 {
@@ -10,5 +10,10 @@ namespace Wizard.Api.Models
         public DateTime TaxDate { get; set; }
         public string PreviousTaxRate { get; set; }
         public string NextInvoiceNumber { get; set; }
+
+        public string ToJson
+        {
+            get { return this.ToJson<FinancialContract>(); }
+        }
     }
 }

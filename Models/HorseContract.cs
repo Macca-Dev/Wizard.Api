@@ -1,4 +1,5 @@
 ﻿using System;
+using Wizard.Api.Extensions;
 
 namespace Wizard.Api.Models
 {
@@ -13,5 +14,10 @@ namespace Wizard.Api.Models
         public DateTime DateOfBirth { get; set; }
         public string Colour { get; set; }
         public string Markings { get; set; }
+
+        public string ToJson
+        {
+            get { return this.ToJson<HorseContract>(); }
+        }
     }
 }

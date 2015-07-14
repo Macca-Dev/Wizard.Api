@@ -20,7 +20,7 @@ namespace Wizard.Api.Adapters
             
             using (Stream stream = new MemoryStream())
             {
-                await blob.DownloadToStreamAsync(stream);
+                blob.DownloadToStream(stream);
 
                 stream.Position = 0;
 

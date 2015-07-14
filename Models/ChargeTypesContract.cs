@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Wizard.Api.Contracts;
+using Wizard.Api.Extensions;
 
 namespace Wizard.Api.Models
 {
@@ -7,5 +7,11 @@ namespace Wizard.Api.Models
     {
         public IEnumerable<StableChargeType> StableChargeTypes { get; set; }
         public IEnumerable<StandardChargeType> StandardChargeTypes { get; set; }
+
+        public string ToJson
+        {
+            //todo this may fail. might need to do something a little more intelligent with complex objects like this.
+            get { return this.ToJson<ChargeTypesContract>(); }
+        }
     }
 }

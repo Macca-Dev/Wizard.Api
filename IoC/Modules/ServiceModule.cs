@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
 using Wizard.Api.Adapters;
-using Wizard.Api.Services;
+using Wizard.Api.Services.Implementations;
+using Wizard.Api.Services.Interfaces;
 
 namespace Wizard.Api.IoC.Modules
 {
@@ -8,8 +9,8 @@ namespace Wizard.Api.IoC.Modules
     {
         public override void Load()
         {
-            Bind<IEmailService>().To<EmailService>().InSingletonScope();
             Bind<IStorageAdapter>().To<AzureStorageAdapter>().InSingletonScope();
+            Bind<IStableService>().To<StableService>().InSingletonScope();
         }
     }
 }
