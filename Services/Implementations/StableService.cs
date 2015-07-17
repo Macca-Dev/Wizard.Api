@@ -2,7 +2,7 @@
 using Wizard.Api.Adapters;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
-using Wizard.Api.Extensions;
+
 namespace Wizard.Api.Services.Implementations
 {
     public class StableService : IStableService
@@ -21,12 +21,12 @@ namespace Wizard.Api.Services.Implementations
             await _storage.UploadTextAsync(fileName, stable.ToJson, ContainerName);
         }
 
-        public async Task<StableContract> Get(string email)
+        public async Task<string> Get(string email)
         {
             var fileName = string.Format("{0}.json", email);
             var stable =  await _storage.DownloadTextAsync(fileName, ContainerName);
 
-            return stable.FromJson<StableContract>();
+            return stable;
         }
     }
 }
