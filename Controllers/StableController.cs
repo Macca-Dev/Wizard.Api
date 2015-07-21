@@ -1,10 +1,11 @@
 ﻿using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using NLog;
+using Wizard.Api.Mappers.Interfaces;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
+using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
@@ -14,17 +15,31 @@ namespace Wizard.Api.Controllers
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly IStableService _stableService;
-        
-        public StableController(IStableService stableService)
+        private readonly StableValidator _validator;
+        private readonly IInvalidDataProblemMapper _problemMapper;
+
+        public StableController(IStableService stableService, StableValidator validator, IInvalidDataProblemMapper problemMapper)
         {
             _stableService = stableService;
+            _validator = validator;
+            _problemMapper = problemMapper;
         }
 
         [HttpPost]
         [Route("stable")]
         public IHttpActionResult Create([FromBody] StableContract stable)
         {
-            Logger.Info(string.Format("Email: {0} saved stable information", stable.StableEmail));
+            Logger.Info(string.Format("Email: {0} attempting to save stable information", stable.StableEmail));
+
+            var failures = _validator.Validate(stable);
+
+            if (!failures.IsValid)
+            {
+                var result = _problemMapper.Map(failures.Errors).ToJson;
+
+                return Content(HttpStatusCode.BadRequest, result);
+            }
+
             _stableService.StoreStable(stable);
             return Ok();
         }
