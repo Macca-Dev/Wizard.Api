@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using NLog;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
@@ -8,6 +9,7 @@ using Wizard.Api.Services.Interfaces;
 namespace Wizard.Api.Controllers
 {
     //[RoutePrefix("v1")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StableController : ApiController
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();

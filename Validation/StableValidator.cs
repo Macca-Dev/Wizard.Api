@@ -9,9 +9,9 @@ namespace Wizard.Api.Validation
         {
             RuleFor(stable => stable.RacingCode)
                 .Must(BeAValidCode)
-                .WithMessage(" ")
+                .WithMessage(" ");
 
-                
+
         }
 
         private static bool BeAValidCode(string racingCode)
