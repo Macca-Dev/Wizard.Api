@@ -51,7 +51,7 @@ namespace Wizard.Api.Controllers
             Logger.Info(string.Format("Email: {0} asked for data on it's stable", email));
             var stable = _stableService.Get(email);
 
-            return Content(HttpStatusCode.Found, stable);
+            return Content(HttpStatusCode.OK, stable);
         }
     }
 }
