@@ -15,7 +15,7 @@ namespace Wizard.Api.Services.Implementations
             _storage = storage;
         }
 
-        public async Task StoreStable(StableContract stable)
+        public async Task Save(StableContract stable)
         {
             var fileName = string.Format("{0}.json", stable.StableEmail);
             await _storage.UploadTextAsync(fileName, stable.ToJson, ContainerName);

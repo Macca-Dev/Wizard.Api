@@ -3,9 +3,9 @@ using Wizard.Api.Models;
 
 namespace Wizard.Api.Services.Interfaces
 {
-    public interface IStableService
+    public interface IFinancialService
     {
-        Task Save(StableContract stable);
+        Task Save(FinancialContract financial);
         Task<string> Get(string email);
     }
 }

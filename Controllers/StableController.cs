@@ -14,6 +14,7 @@ namespace Wizard.Api.Controllers
     public class StableController : ApiController
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly IStableService _stableService;
         private readonly StableValidator _validator;
         private readonly IInvalidDataProblemMapper _problemMapper;
@@ -39,8 +40,8 @@ namespace Wizard.Api.Controllers
 
                 return Content(HttpStatusCode.BadRequest, result);
             }
-
-            _stableService.StoreStable(stable);
+             
+            _stableService.Save(stable);
             return Ok();
         }
 
