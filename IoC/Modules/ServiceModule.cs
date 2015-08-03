@@ -16,6 +16,8 @@ namespace Wizard.Api.IoC.Modules
             Bind<IStableService>().To<StableService>().InSingletonScope();
             Bind<StableValidator>().ToSelf();
             Bind<IInvalidDataProblemMapper>().To<InvalidDataProblemMapper>().InSingletonScope();
+            Bind<FinancialValidator>().ToSelf();
+            Bind<IFinancialService>().To<FinancialService>();
         }
     }
 }
