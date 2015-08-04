@@ -48,6 +48,7 @@ namespace Wizard.Api.Controllers
         }
 
         [HttpGet]
+        [Route("financial/{email}")]
         public IHttpActionResult GetByEmail(string email)
         {
             Logger.Info(string.Format("Email: {0} asked for its financial data", email));
