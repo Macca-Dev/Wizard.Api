@@ -51,10 +51,14 @@ namespace Wizard.Api.Controllers
         public IHttpActionResult GetByEmail(string email)
         {
             Logger.Info(string.Format("Email: {0} asked for its financial data", email));
-            
-            return Content(
-                HttpStatusCode.OK,
-                _financialService.Get(email));
+            var financial = _financialService.Get(email);
+
+            if(null == financial)
+            {
+                return NotFound();
+            }
+
+            return Content(HttpStatusCode.OK, financial);
         }
     }
 }
