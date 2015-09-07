@@ -13,18 +13,18 @@ namespace Wizard.Api.Services.Implementations
         public StableService(IStorageAdapter storage)
         {
             _storage = storage;
-        }
+        }       
 
-        public async Task Save(StableContract stable)
+        public void Save(StableContract stable)
         {
             var fileName = string.Format("{0}.json", stable.StableEmail);
-            await _storage.UploadTextAsync(fileName, stable.ToJson, ContainerName);
+             _storage.UploadText(fileName, stable.ToJson, ContainerName);
         }
 
-        public async Task<string> Get(string email)
+        public string Get(string email)
         {
             var fileName = string.Format("{0}.json", email);
-            var stable =  await _storage.DownloadTextAsync(fileName, ContainerName);
+            var stable = _storage.DownloadText(fileName, ContainerName);
 
             return stable;
         }

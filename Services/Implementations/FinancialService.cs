@@ -15,17 +15,17 @@ namespace Wizard.Api.Services.Implementations
             _storage = storage;
         }
 
-        public async Task Save(FinancialContract financial)
+        public void Save(FinancialContract financial)
         {
             var fileName = string.Format("{0}.json", financial.StableEmail);
-            await _storage.UploadTextAsync(fileName, financial.ToJson, ContainerName);
+            _storage.UploadText(fileName, financial.ToJson, ContainerName);
         }
 
-        public async Task<string> Get(string email)
+        public string Get(string email)
         {
             var fileName = string.Format("{0}.json", email);
             
-            return await _storage.DownloadTextAsync(fileName, ContainerName);
+            return _storage.DownloadText(fileName, ContainerName);
         }
     }
 }

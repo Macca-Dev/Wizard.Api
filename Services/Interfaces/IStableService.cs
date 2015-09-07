@@ -5,7 +5,7 @@ namespace Wizard.Api.Services.Interfaces
 {
     public interface IStableService
     {
-        Task Save(StableContract stable);
-        Task<string> Get(string email);
+        string Get(string email);
+        void Save(StableContract stable);
     }
 }

@@ -51,7 +51,8 @@ namespace Wizard.Api.Controllers
         {
             Logger.Info(string.Format("Email: {0} asked for data on it's stable", email));
             var stable = _stableService.Get(email);
-            if(stable.Status == System.Threading.Tasks.TaskStatus.Faulted)
+            
+            if(null == stable)
             {
                 return NotFound();
             }
