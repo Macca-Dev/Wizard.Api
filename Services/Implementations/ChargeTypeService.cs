@@ -1,5 +1,4 @@
-﻿using WebGrease.Css.Extensions;
-using Wizard.Api.Adapters;
+﻿using Wizard.Api.Adapters;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
 
