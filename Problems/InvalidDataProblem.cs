@@ -8,10 +8,7 @@ namespace Wizard.Api.Problems
     {
         public IEnumerable<DataProblem> Problems { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<InvalidDataProblem>(); }
-        }
+        public string ToJson => this.ToJson<InvalidDataProblem>();
     }
 
     public class DataProblem

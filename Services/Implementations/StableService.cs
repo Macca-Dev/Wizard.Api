@@ -17,13 +17,13 @@ namespace Wizard.Api.Services.Implementations
 
         public void Save(StableContract stable)
         {
-            var fileName = string.Format("{0}.json", stable.StableEmail);
+            var fileName = $"{stable.StableEmail}.json";
              _storage.UploadText(fileName, stable.ToJson, ContainerName);
         }
 
         public string Get(string email)
         {
-            var fileName = string.Format("{0}.json", email);
+            var fileName = $"{email}.json";
             var stable = _storage.DownloadText(fileName, ContainerName);
 
             return stable;

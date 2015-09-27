@@ -12,9 +12,6 @@ namespace Wizard.Api.Models
         public string Fax { get; set; }
         public string Address { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<StableContract>(); }
-        }
+        public string ToJson => this.ToJson<StableContract>();
     }
 }

@@ -15,9 +15,6 @@ namespace Wizard.Api.Models
         public string Colour { get; set; }
         public string Markings { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<HorseContract>(); }
-        }
+        public string ToJson => this.ToJson<HorseContract>();
     }
 }

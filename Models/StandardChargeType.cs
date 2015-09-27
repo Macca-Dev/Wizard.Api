@@ -1,8 +1,9 @@
-﻿using Wizard.Api.Extensions;
+﻿using Wizard.Api.Contracts;
+using Wizard.Api.Extensions;
 
 namespace Wizard.Api.Models
 {
-    public class StandardChargeType : WizardContract
+    public class StandardChargeType : JsonSerializable
     {
         public long Id { get; set; }
         public string Description { get; set; }
@@ -10,9 +11,7 @@ namespace Wizard.Api.Models
         public string Rate { get; set; }
         public bool InStable { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<StandardChargeType>(); }
-        }
+        public string ToJson => 
+            this.ToJson<StandardChargeType>();
     }
 }

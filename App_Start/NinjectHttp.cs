@@ -52,13 +52,14 @@ namespace Ninject.Http
     public class NinjectHttpModules
     {
         //Return Lists of Modules in the Application
-        public static NinjectModule[] Modules
-        {
-            get
+        public static NinjectModule[] Modules =>
+            new NinjectModule[]
             {
-                return new NinjectModule[] { new ServiceModule()  };
-            }
-        }
+                new ServiceModule(),
+                new MapperModule(),
+                new AzureModule(),
+                new ValidationModule()
+            };
     }
 
 

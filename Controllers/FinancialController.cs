@@ -32,13 +32,13 @@ namespace Wizard.Api.Controllers
         [Route("financial")]
         public IHttpActionResult Create([FromBody] FinancialContract financial)
         {
-            Logger.Info(string.Format("Email: {0} attempting to save financial information", financial.StableEmail));
+            Logger.Info($"Email: {financial.StableEmail} attempting to save financial information");
 
-            var failures = _validator.Validate(financial);
+            var validation = _validator.Validate(financial);
 
-            if (!failures.IsValid)
+            if (false == validation.IsValid)
             {
-                var result = _problemMapper.Map(failures.Errors).ToJson;
+                var result = _problemMapper.Map(validation.Errors).ToJson;
                 return Content(HttpStatusCode.BadRequest, result);
             }
 
@@ -50,7 +50,7 @@ namespace Wizard.Api.Controllers
         [Route("financial/{email}")]
         public IHttpActionResult GetByEmail(string email)
         {
-            Logger.Info(string.Format("Email: {0} asked for its financial data", email));
+            Logger.Info($"Email: {email} asked for its financial data");
             var financial = _financialService.Get(email);
 
             if(null == financial)

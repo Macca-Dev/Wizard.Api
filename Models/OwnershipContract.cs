@@ -9,10 +9,7 @@ namespace Wizard.Api.Models
         public long HorseId { get; set; }
         public IEnumerable<Ownership> Ownerships { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<HorseOwnershipContract>(); }
-        }
+        public string ToJson => this.ToJson<HorseOwnershipContract>();
     }
 
     public class Ownership

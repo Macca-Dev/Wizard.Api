@@ -11,9 +11,7 @@ namespace Wizard.Api.Models
         public string PreviousTaxRate { get; set; }
         public string NextInvoiceNumber { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<FinancialContract>(); }
-        }
+        public string ToJson => 
+            this.ToJson<FinancialContract>();
     }
 }

@@ -14,9 +14,6 @@ namespace Wizard.Api.Models
         public string Mobile { get; set; }
         public string Address { get; set; }
 
-        public string ToJson
-        {
-            get { return this.ToJson<OwnersContract>(); }
-        }
+        public string ToJson => this.ToJson<OwnersContract>();
     }
 }

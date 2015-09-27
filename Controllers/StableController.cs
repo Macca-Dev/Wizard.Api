@@ -30,7 +30,7 @@ namespace Wizard.Api.Controllers
         [Route("stable")]
         public IHttpActionResult Create([FromBody] StableContract stable)
         {
-            Logger.Info(string.Format("Email: {0} attempting to save stable information", stable.StableEmail));
+            Logger.Info($"Email: {stable.StableEmail} attempting to save stable information");
 
             var failures = _validator.Validate(stable);
 
@@ -49,7 +49,7 @@ namespace Wizard.Api.Controllers
         [Route("stable/{email}")]
         public IHttpActionResult GetByEmail(string email)
         {
-            Logger.Info(string.Format("Email: {0} asked for data on it's stable", email));
+            Logger.Info($"Email: {email} asked for data on it's stable");
             var stable = _stableService.Get(email);
             
             if(null == stable)
