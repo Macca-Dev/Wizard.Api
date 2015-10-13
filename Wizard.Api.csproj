@@ -155,7 +155,7 @@
     <Compile Include="Codes.cs" />
     <Compile Include="Controllers\ChargeTypeController.cs" />
     <Compile Include="Controllers\FinancialController.cs" />
-    <Compile Include="Controllers\AnimalController.cs" />
+    <Compile Include="Controllers\HorseController.cs" />
     <Compile Include="IoC\Modules\AzureModule.cs" />
     <Compile Include="IoC\Modules\MapperModule.cs" />
     <Compile Include="IoC\Modules\ValidationModule.cs" />
@@ -171,7 +171,8 @@
     <Compile Include="Models\ChargeTypesContract.cs" />
     <Compile Include="Models\EmailContract.cs" />
     <Compile Include="Models\FinancialContract.cs" />
-    <Compile Include="Models\HorseContract.cs" />
+    <Compile Include="Models\Horse.cs" />
+    <Compile Include="Models\HorsesContract.cs" />
     <Compile Include="Models\OwnersContract.cs" />
     <Compile Include="Models\OwnershipContract.cs" />
     <Compile Include="Models\StableChargeType.cs" />
@@ -189,7 +190,7 @@
     <Compile Include="Services\Interfaces\IFinancialService.cs" />
     <Compile Include="Services\Interfaces\IStableService.cs" />
     <Compile Include="Validation\ChargeTypeValidator.cs" />
-    <Compile Include="Validation\HorseValidator.cs" />
+    <Compile Include="Validation\HorsesValidator.cs" />
     <Compile Include="Validation\FinancialValidator.cs" />
     <Compile Include="Validation\StableValidator.cs" />
   </ItemGroup>

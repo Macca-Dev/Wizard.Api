@@ -1,9 +1,10 @@
 ﻿using System;
+using Wizard.Api.Contracts;
 using Wizard.Api.Extensions;
 
 namespace Wizard.Api.Models
 {
-    public class HorseContract : WizardContract
+    public class Horse : JsonSerializable
     {
         public long Id { get; set; }
         public string RacingName { get; set; }
@@ -16,6 +17,6 @@ namespace Wizard.Api.Models
         public string Markings { get; set; }
 
         public string ToJson => 
-            this.ToJson<HorseContract>();
+            this.ToJson<Horse>();
     }
 }
