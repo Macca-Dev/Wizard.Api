@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using NLog;
 using Wizard.Api.Mappers.Interfaces;
 using Wizard.Api.Models;
@@ -8,6 +9,7 @@ using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class HorseController : ApiController
     {
         private readonly IAnimalService _animalService;
@@ -39,6 +41,21 @@ namespace Wizard.Api.Controllers
             _animalService.Save(horses);
             
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("horse/{email}")]
+        public IHttpActionResult GetByEmail(string email)
+        {
+            Logger.Info($"Email: {email} asked for there horse data");
+
+            var horses = _animalService.Get(email);
+            if (horses == null)
+            {
+                return NotFound();
+            }
+
+            return Content(HttpStatusCode.OK, horses);
         }
     }
 }
