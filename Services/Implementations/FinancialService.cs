@@ -23,7 +23,6 @@ namespace Wizard.Api.Services.Implementations
         public string Get(string email)
         {
             var fileName = $"{email}.json";
-            
             return _storage.DownloadText(fileName, ContainerName);
         }
     }

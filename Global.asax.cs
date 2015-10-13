@@ -12,7 +12,7 @@ namespace Wizard.Api
         protected void Application_Start()
         {
             WebApiConfig.Register(GlobalConfiguration.Configuration);
-            NinjectHttpContainer.RegisterModules(NinjectHttpModules.Modules);  
+            NinjectHttpContainer.RegisterModules(NinjectHttpModules.Modules);
         }
     }
 }
