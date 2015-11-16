@@ -69,6 +69,7 @@ echo Handling .NET Web Application deployment.
 
 :: 1. Restore NuGet packages
 IF /I "Wizard.Api.sln" NEQ "" (
+echo restoring nuget
   call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\Wizard.Api.sln"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
