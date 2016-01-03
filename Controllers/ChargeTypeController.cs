@@ -5,11 +5,12 @@ using Wizard.Api.Mappers.Interfaces;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
 using Wizard.Api.Validation;
+using System.Web.Http.Cors;
 
 namespace Wizard.Api.Controllers
 {
-    
-    public class ChargeTypeController : ApiController
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
+	public class ChargeTypeController : ApiController
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly ChargeTypeValidator _validator;
