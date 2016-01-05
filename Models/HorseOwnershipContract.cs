@@ -11,12 +11,4 @@ namespace Wizard.Api.Models
 
         public string ToJson => this.ToJson<HorseOwnershipContract>();
     }
-
-    public class Ownership
-    {
-        public long OwnerId { get; set; }
-        public string OwnerName { get; set; }
-        public string PercentOwned { get; set; }
-        public bool IsSyndicate { get; set; }
-    }
 }

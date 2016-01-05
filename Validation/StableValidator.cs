@@ -4,7 +4,7 @@ using Wizard.Api.Models;
 
 namespace Wizard.Api.Validation
 {
-    public class StableValidator : AbstractValidator<StableContract>
+    public class StableValidator : AbstractValidator<StableDataContract>
     {
         public StableValidator()
         {

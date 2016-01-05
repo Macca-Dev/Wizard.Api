@@ -15,7 +15,7 @@ namespace Wizard.Api.Services.Implementations
             _storage = storage;
         }       
 
-        public void Save(StableContract stable)
+        public void Save(StableDataContract stable)
         {
             var fileName = $"{stable.StableEmail}.json";
              _storage.UploadText(fileName, stable.ToJson, ContainerName);

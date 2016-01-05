@@ -28,7 +28,7 @@ namespace Wizard.Api.Controllers
 
         [HttpPost]
         [Route("stable")]
-        public IHttpActionResult Create([FromBody] StableContract stable)
+        public IHttpActionResult Create([FromBody] StableDataContract stable)
         {
             Logger.Info($"Email: {stable.StableEmail} attempting to save stable information");
 

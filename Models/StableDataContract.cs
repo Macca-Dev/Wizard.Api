@@ -2,7 +2,7 @@
 
 namespace Wizard.Api.Models
 {
-    public class StableContract : WizardContract
+    public class StableDataContract : WizardContract
     {
         public string RacingCode { get; set; }
         public string Trainer { get; set; }
@@ -12,6 +12,6 @@ namespace Wizard.Api.Models
         public string Fax { get; set; }
         public string Address { get; set; }
 
-        public string ToJson => this.ToJson<StableContract>();
+        public string ToJson => this.ToJson<StableDataContract>();
     }
 }
