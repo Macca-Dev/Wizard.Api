@@ -1,4 +1,4 @@
-﻿using Wizard.Api.Contracts;
+﻿using Estable.Lib.Contracts;
 
 namespace Wizard.Api.Models
 {

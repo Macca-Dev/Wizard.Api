@@ -1,6 +1,6 @@
 ﻿using Ninject.Modules;
-using Wizard.Api.Mappers.Implementations;
-using Wizard.Api.Mappers.Interfaces;
+using Estable.Lib.Mappers.Impl;
+using Estable.Lib.Mappers;
 
 namespace Wizard.Api.IoC.Modules
 {

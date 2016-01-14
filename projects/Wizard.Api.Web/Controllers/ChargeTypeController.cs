@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http;
 using NLog;
-using Wizard.Api.Mappers.Interfaces;
+using Estable.Lib.Mappers;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
 using Wizard.Api.Validation;

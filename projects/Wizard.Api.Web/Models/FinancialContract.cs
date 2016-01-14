@@ -1,5 +1,5 @@
 ﻿using System;
-using Wizard.Api.Extensions;
+using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Models
 {

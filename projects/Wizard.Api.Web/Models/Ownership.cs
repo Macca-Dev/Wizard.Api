@@ -1,5 +1,5 @@
-﻿using Wizard.Api.Extensions;
-using Wizard.Api.Contracts;
+﻿using Estable.Lib.Extensions;
+using Estable.Lib.Contracts;
 
 namespace Wizard.Api.Models
 {

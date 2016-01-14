@@ -2,7 +2,7 @@
 using System.Web.Http;
 using System.Web.Http.Cors;
 using NLog;
-using Wizard.Api.Mappers.Interfaces;
+using Estable.Lib.Mappers;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
 using Wizard.Api.Validation;
