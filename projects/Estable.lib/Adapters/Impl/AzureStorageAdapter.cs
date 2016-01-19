@@ -1,10 +1,10 @@
-﻿using Estable.Lib.Contracts;
+﻿using Estable.Lib.Adapters;
 using System.IO;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.Azure;
 
-namespace Estable.Lib.Adapters
+namespace Estable.Lib.Adapters.Impl
 {
 	public class AzureStorageAdapter : IStorageAdapter
 	{

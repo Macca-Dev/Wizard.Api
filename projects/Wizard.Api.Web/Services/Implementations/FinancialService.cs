@@ -1,4 +1,4 @@
-﻿using Estable.Lib.Contracts;
+﻿using Estable.Lib.Adapters;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
 using Estable.Lib;

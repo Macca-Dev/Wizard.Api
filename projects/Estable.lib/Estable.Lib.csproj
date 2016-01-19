@@ -78,9 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\AzureStorageAdapter.cs" />
+    <Compile Include="Adapters\Impl\AzureStorageAdapter.cs" />
     <Compile Include="Codes.cs" />
-    <Compile Include="Contracts\IStorageAdapter.cs" />
+    <Compile Include="Adapters\IStorageAdapter.cs" />
     <Compile Include="Contracts\JsonSerializable.cs" />
     <Compile Include="Extensions\JsonSerializableExtensions.cs" />
     <Compile Include="Mappers\IInvalidDataProblemMapper.cs" />

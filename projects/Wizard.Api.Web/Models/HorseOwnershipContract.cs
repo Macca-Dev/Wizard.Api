@@ -3,7 +3,7 @@ using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Models
 {
-    public class HorseOwnershipContract : WizardContract
+    public class HorseOwnershipContract : StableContract
     {
         public long Id { get; set; }
         public long HorseId { get; set; }

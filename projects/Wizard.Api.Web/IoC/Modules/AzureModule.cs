@@ -1,6 +1,6 @@
 ﻿using Ninject.Modules;
-using Estable.Lib.Contracts;
 using Estable.Lib.Adapters;
+using Estable.Lib.Adapters.Impl;
 
 namespace Wizard.Api.IoC.Modules
 {

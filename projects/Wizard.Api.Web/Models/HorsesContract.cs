@@ -3,7 +3,7 @@ using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Models
 {
-    public class HorsesContract : WizardContract
+    public class HorsesContract : StableContract
     {
         public IEnumerable<Horse> Horses { get; set; }
 

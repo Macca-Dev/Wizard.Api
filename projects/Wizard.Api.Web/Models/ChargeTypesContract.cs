@@ -3,7 +3,7 @@ using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Models
 {
-    public class ChargeTypesContract : WizardContract
+    public class ChargeTypesContract : StableContract
     {
         public IEnumerable<StableChargeType> StableChargeTypes { get; set; }
         public IEnumerable<StandardChargeType> StandardChargeTypes { get; set; }

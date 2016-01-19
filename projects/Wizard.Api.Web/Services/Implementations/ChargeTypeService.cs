@@ -1,12 +1,11 @@
 ﻿using System.Web.Http.Cors;
-using Estable.Lib.Contracts;
+using Estable.Lib.Adapters;
 using Wizard.Api.Models;
 using Wizard.Api.Services.Interfaces;
 using Estable.Lib;
 
 namespace Wizard.Api.Services.Implementations
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ChargeTypeService : IChargeTypeService
     {
         private readonly IStorageAdapter _storage;

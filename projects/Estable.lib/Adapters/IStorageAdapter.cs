@@ -1,5 +1,4 @@
-﻿
-namespace Estable.Lib.Contracts
+﻿namespace Estable.Lib.Adapters
 {
 	public interface IStorageAdapter
 	{

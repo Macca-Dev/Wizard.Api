@@ -170,7 +170,6 @@
     </Compile>
     <Compile Include="IoC\Modules\ServiceModule.cs" />
     <Compile Include="Models\ChargeTypesContract.cs" />
-    <Compile Include="Models\EmailContract.cs" />
     <Compile Include="Models\EntireStableContract.cs" />
     <Compile Include="Models\FinancialContract.cs" />
     <Compile Include="Models\Horse.cs" />
@@ -182,7 +181,7 @@
     <Compile Include="Models\StableChargeType.cs" />
     <Compile Include="Models\StableDataContract.cs" />
     <Compile Include="Models\StandardChargeType.cs" />
-    <Compile Include="Models\WizardContract.cs" />
+    <Compile Include="Models\StableContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implementations\AnimalService.cs" />
     <Compile Include="Services\Implementations\ChargeTypeService.cs" />

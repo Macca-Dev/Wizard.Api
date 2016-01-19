@@ -3,7 +3,7 @@ using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Models
 {
-    public class FinancialContract : WizardContract
+    public class FinancialContract : StableContract
     {
         public string TaxNumber { get; set; }
         public string TaxRate { get; set; }

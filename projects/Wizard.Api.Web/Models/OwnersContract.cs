@@ -3,7 +3,7 @@ using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Models
 {
-	public class OwnersContract : WizardContract
+	public class OwnersContract : StableContract
 	{
 		IEnumerable<Owner> Owners { get; set; }
 		public string ToJson =>

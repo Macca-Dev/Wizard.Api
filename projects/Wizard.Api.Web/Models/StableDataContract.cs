@@ -2,7 +2,7 @@
 
 namespace Wizard.Api.Models
 {
-    public class StableDataContract : WizardContract
+    public class StableDataContract : StableContract
     {
         public string RacingCode { get; set; }
         public string Trainer { get; set; }
