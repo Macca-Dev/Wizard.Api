@@ -1,7 +1,6 @@
 ﻿using Estable.Lib.Extensions;
-using Estable.Lib.Contracts;
 
-namespace Wizard.Api.Models
+namespace Estable.Lib.Contracts
 {
 	public class Ownership : JsonSerializable
 	{

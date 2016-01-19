@@ -1,6 +1,6 @@
 ﻿using System.Web.Http.Cors;
 using Estable.Lib.Adapters;
-using Wizard.Api.Models;
+using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
 using Estable.Lib;
 

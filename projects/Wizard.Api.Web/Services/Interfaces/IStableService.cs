@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Wizard.Api.Models;
+using Estable.Lib.Contracts;
 
 namespace Wizard.Api.Services.Interfaces
 {

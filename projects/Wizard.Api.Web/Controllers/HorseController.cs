@@ -3,7 +3,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using NLog;
 using Estable.Lib.Mappers;
-using Wizard.Api.Models;
+using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
 using Wizard.Api.Validation;
 

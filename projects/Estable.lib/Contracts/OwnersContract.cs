@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Estable.Lib.Extensions;
+﻿using Estable.Lib.Extensions;
+using System.Collections.Generic;
 
-namespace Wizard.Api.Models
+namespace Estable.Lib.Contracts
 {
 	public class OwnersContract : StableContract
 	{

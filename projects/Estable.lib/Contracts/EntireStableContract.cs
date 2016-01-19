@@ -1,6 +1,6 @@
-﻿using Estable.Lib.Contracts;
+﻿using Estable.Lib.Extensions;
 
-namespace Wizard.Api.Models
+namespace Estable.Lib.Contracts
 {
 	public class EntireStableContract : JsonSerializable
 	{

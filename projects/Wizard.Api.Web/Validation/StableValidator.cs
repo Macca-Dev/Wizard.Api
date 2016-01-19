@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentValidation;
-using Wizard.Api.Models;
+using Estable.Lib.Contracts;
 
 namespace Wizard.Api.Validation
 {
