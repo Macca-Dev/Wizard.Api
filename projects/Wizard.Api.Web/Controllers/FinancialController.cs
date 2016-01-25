@@ -9,43 +9,43 @@ using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class FinancialController : WizardControllerBase
-    {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
+	public class FinancialController : WizardControllerBase
+	{
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IFinancialService _financialService;
+		private readonly IFinancialService _financialService;
 
 		public FinancialController(
-            IFinancialService financialService,
+			IFinancialService financialService,
 			EmailValidator emailValidator,
 			IInvalidDataProblemMapper problemMapper)
 			: base(emailValidator, problemMapper)
 		{
-            _financialService = financialService;
-        }
+			_financialService = financialService;
+		}
 
-        [HttpPost]
-        [Route("financial")]
-        public IHttpActionResult Create([FromBody] FinancialContract financial)
-        {
-            Logger.Info($"Email: {financial.StableEmail} attempting to save financial information");
-			
+		[HttpPost]
+		[Route("financial")]
+		public IHttpActionResult Create([FromBody] FinancialContract financial)
+		{
+			Logger.Info($"Email: {financial.StableEmail} attempting to save financial information");
+
 			var problems = _financialService.Save(financial);
 
-			if(null != problems)
+			if (null != problems)
 			{
 				return Content(HttpStatusCode.BadRequest, problems);
 			}
 
-            return Ok();
-        }
+			return Ok();
+		}
 
-        [HttpGet]
-        [Route("financial/{email}")]
-        public IHttpActionResult GetByEmail(string email)
-        {
-            Logger.Info($"Email: {email} asked for its financial data");
+		[HttpGet]
+		[Route("financial/{email}")]
+		public IHttpActionResult GetByEmail(string email)
+		{
+			Logger.Info($"Email: {email} asked for its financial data");
 
 			var validation = ValidateGetRequest(email);
 
@@ -56,14 +56,14 @@ namespace Wizard.Api.Controllers
 
 			var financial = _financialService.Get(email);
 
-            if(null == financial)
-            {
+			if (null == financial)
+			{
 				var obj = new FinancialContract();
 				_financialService.SaveWithoutValidation(obj);
 				financial = obj.ToJson;
-            }
+			}
 
-            return Content(HttpStatusCode.OK, financial);
-        }
-    }
+			return Content(HttpStatusCode.OK, financial);
+		}
+	}
 }

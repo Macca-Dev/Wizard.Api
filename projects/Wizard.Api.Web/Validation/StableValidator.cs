@@ -4,56 +4,56 @@ using Estable.Lib.Contracts;
 
 namespace Wizard.Api.Validation
 {
-    public class StableValidator : AbstractValidator<StableDataContract>
-    {
-        public StableValidator()
-        {
-            RuleFor(stable => stable.StableName)
-                .NotEmpty()
-                .WithMessage("Please enter your stable name.");
-                
-            RuleFor(stable => stable.RacingCode)
-                .Must(BeAValidCode)
-                .WithMessage("Please select a valid Racing Code.");
+	public class StableValidator : AbstractValidator<StableDataContract>
+	{
+		public StableValidator()
+		{
+			RuleFor(stable => stable.StableName)
+				.NotEmpty()
+				.WithMessage("Please enter your stable name.");
 
-            RuleFor(stable => stable.Trainer)
-                .NotEmpty()
-                .WithMessage("Please enter your trainer.");
+			RuleFor(stable => stable.RacingCode)
+				.Must(BeAValidCode)
+				.WithMessage("Please select a valid Racing Code.");
 
-            RuleFor(stable => stable.LegalEntity)
-                .NotEmpty()
-                .WithMessage("Please enter your legal entity.");
+			RuleFor(stable => stable.Trainer)
+				.NotEmpty()
+				.WithMessage("Please enter your trainer.");
 
-            RuleFor(stable => stable.Mobile)
-                .NotEmpty()
-                .WithMessage("Please enter your mobile.");
+			RuleFor(stable => stable.LegalEntity)
+				.NotEmpty()
+				.WithMessage("Please enter your legal entity.");
 
-            RuleFor(stable => stable.Phone)
-                .NotEmpty()
-                .WithMessage("Please enter your phone.");
+			RuleFor(stable => stable.Mobile)
+				.NotEmpty()
+				.WithMessage("Please enter your mobile.");
 
-            RuleFor(stable => stable.Fax)
-                .NotEmpty()
-                .WithMessage("Please enter your fax.");
+			RuleFor(stable => stable.Phone)
+				.NotEmpty()
+				.WithMessage("Please enter your phone.");
 
-            RuleFor(stable => stable.Address)
-                .NotEmpty()
-                .WithMessage("Please enter your address.");
-        }
+			RuleFor(stable => stable.Fax)
+				.NotEmpty()
+				.WithMessage("Please enter your fax.");
 
-        private static bool BeAValidCode(string racingCode)
-        {
-            if (String.IsNullOrEmpty(racingCode))
-            {
-                return false;
-            }
+			RuleFor(stable => stable.Address)
+				.NotEmpty()
+				.WithMessage("Please enter your address.");
+		}
 
-            var code = racingCode.ToLower();
-            
-            return (code == "gallops" ||
-                    code == "harness" ||
-                    code == "greyhound" ||
-                    code == "other");
-        }
-    }
+		private static bool BeAValidCode(string racingCode)
+		{
+			if (String.IsNullOrEmpty(racingCode))
+			{
+				return false;
+			}
+
+			var code = racingCode.ToLower();
+
+			return (code == "gallops" ||
+					code == "harness" ||
+					code == "greyhound" ||
+					code == "other");
+		}
+	}
 }

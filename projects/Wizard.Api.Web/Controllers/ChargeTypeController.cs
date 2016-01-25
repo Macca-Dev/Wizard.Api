@@ -19,7 +19,7 @@ namespace Wizard.Api.Controllers
 		public ChargeTypeController(
 			IChargeTypeService chargeTypeService,
 			EmailValidator emailValidator,
-			IInvalidDataProblemMapper problemMapper) 
+			IInvalidDataProblemMapper problemMapper)
 			: base(emailValidator, problemMapper)
 		{
 			_chargeTypeService = chargeTypeService;
@@ -49,7 +49,7 @@ namespace Wizard.Api.Controllers
 
 			var validation = ValidateGetRequest(email);
 
-			if(validation != null)
+			if (validation != null)
 			{
 				return validation;
 			}

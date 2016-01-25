@@ -10,7 +10,7 @@ namespace Wizard.Api.Controllers
 {
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class EntireStableController : ApiController
-    {
+	{
 		IEntireStableService _service;
 		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -35,7 +35,7 @@ namespace Wizard.Api.Controllers
 			Logger.Info($"Email: {email} asked for all of its data");
 
 			var stable = _service.Get(email);
-			if(stable.IsNullOrEmpty())
+			if (stable.IsNullOrEmpty())
 			{
 				return NotFound();
 			}

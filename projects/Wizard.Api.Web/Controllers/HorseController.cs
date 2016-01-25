@@ -9,42 +9,42 @@ using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class HorseController : WizardControllerBase
-    {
-        private readonly IAnimalService _animalService;
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
+	public class HorseController : WizardControllerBase
+	{
+		private readonly IAnimalService _animalService;
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public HorseController(
+		public HorseController(
 			IAnimalService animalService,
 			EmailValidator emailValidator,
 			IInvalidDataProblemMapper problemMapper)
 			: base(emailValidator, problemMapper)
 		{
-            _animalService = animalService;
-        }
+			_animalService = animalService;
+		}
 
-        [HttpPost]
-        [Route("horse")]
-        public IHttpActionResult Create([FromBody] HorsesContract horses)
-        {
-            Logger.Info($"Email: {horses.StableEmail} attempting to save horses.");
+		[HttpPost]
+		[Route("horses")]
+		public IHttpActionResult Create([FromBody] HorsesContract horses)
+		{
+			Logger.Info($"Email: {horses.StableEmail} attempting to save horses.");
 
-            var problems = _animalService.Save(horses);
+			var problems = _animalService.Save(horses);
 
-			if(problems != null)
+			if (problems != null)
 			{
 				return Content(HttpStatusCode.BadRequest, problems);
 			}
-            
-            return Ok();
-        }
 
-        [HttpGet]
-        [Route("horse/{email}")]
-        public IHttpActionResult GetByEmail(string email)
-        {
-            Logger.Info($"Email: {email} asked for there horse data");
+			return Ok();
+		}
+
+		[HttpGet]
+		[Route("horses/{email}")]
+		public IHttpActionResult GetByEmail(string email)
+		{
+			Logger.Info($"Email: {email} asked for there horse data");
 
 			var validation = ValidateGetRequest(email);
 
@@ -54,14 +54,14 @@ namespace Wizard.Api.Controllers
 			}
 
 			var horses = _animalService.Get(email);
-            if (horses == null)
-            {
+			if (horses == null)
+			{
 				var obj = new HorsesContract();
 				_animalService.SaveWithoutValidation(obj);
 				horses = obj.ToJson;
 			}
 
-            return Content(HttpStatusCode.OK, horses);
-        }
-    }
+			return Content(HttpStatusCode.OK, horses);
+		}
+	}
 }

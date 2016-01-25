@@ -9,42 +9,42 @@ using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class StableController : WizardControllerBase
-    {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
+	public class StableController : WizardControllerBase
+	{
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IStableService _stableService;
+		private readonly IStableService _stableService;
 
-        public StableController(
+		public StableController(
 			IStableService stableService,
 			EmailValidator emailValidator,
 			IInvalidDataProblemMapper problemMapper)
 			: base(emailValidator, problemMapper)
 		{
-            _stableService = stableService;
-        }
+			_stableService = stableService;
+		}
 
-        [HttpPost]
-        [Route("stable")]
-        public IHttpActionResult Create([FromBody] StableDataContract stable)
-        {
-            Logger.Info($"Email: {stable.StableEmail} attempting to save stable information");
+		[HttpPost]
+		[Route("stable")]
+		public IHttpActionResult Create([FromBody] StableDataContract stable)
+		{
+			Logger.Info($"Email: {stable.StableEmail} attempting to save stable information");
 
-            var problems = _stableService.Save(stable);
-			if(problems != null)
+			var problems = _stableService.Save(stable);
+			if (problems != null)
 			{
 				return Content(HttpStatusCode.BadRequest, problems);
 			}
 
-            return Ok();
-        }
+			return Ok();
+		}
 
-        [HttpGet]
-        [Route("stable/{email}")]
-        public IHttpActionResult GetByEmail(string email)
-        {
-            Logger.Info($"Email: {email} asked for data on it's stable");
+		[HttpGet]
+		[Route("stable/{email}")]
+		public IHttpActionResult GetByEmail(string email)
+		{
+			Logger.Info($"Email: {email} asked for data on it's stable");
 
 			var validation = ValidateGetRequest(email);
 
@@ -54,15 +54,15 @@ namespace Wizard.Api.Controllers
 			}
 
 			var stable = _stableService.Get(email);
-            
-            if(null == stable)
-            {
+
+			if (null == stable)
+			{
 				var obj = new StableDataContract();
 				_stableService.SaveWithoutValidation(obj);
 				stable = obj.ToJson;
-            }
+			}
 
-            return Content(HttpStatusCode.OK, stable);
-        }
-    }
+			return Content(HttpStatusCode.OK, stable);
+		}
+	}
 }

@@ -7,25 +7,25 @@ using Estable.Lib.Mappers;
 
 namespace Wizard.Api.Services.Implementations
 {
-    public class FinancialService : IFinancialService
-    {
-        private readonly IStorageAdapter _storage;
+	public class FinancialService : IFinancialService
+	{
+		private readonly IStorageAdapter _storage;
 		private readonly FinancialValidator _validator;
 		private readonly IInvalidDataProblemMapper _problemMapper;
 		private const string ContainerName = Codes.Azure.Containers.Financial;
 
-        public FinancialService(
+		public FinancialService(
 			IStorageAdapter storage,
 			FinancialValidator validator,
 			IInvalidDataProblemMapper problemMapper)
-        {
-            _storage = storage;
+		{
+			_storage = storage;
 			_validator = validator;
 			_problemMapper = problemMapper;
 		}
 
-        public string Save(FinancialContract financial)
-        {
+		public string Save(FinancialContract financial)
+		{
 			var validation = _validator.Validate(financial);
 
 			if (false == validation.IsValid)
@@ -34,10 +34,10 @@ namespace Wizard.Api.Services.Implementations
 			}
 
 			var fileName = $"{financial.StableEmail}.json";
-            _storage.UploadText(fileName, financial.ToJson, ContainerName);
+			_storage.UploadText(fileName, financial.ToJson, ContainerName);
 
 			return string.Empty;
-        }
+		}
 
 		public void SaveWithoutValidation(FinancialContract financial)
 		{
@@ -46,9 +46,9 @@ namespace Wizard.Api.Services.Implementations
 		}
 
 		public string Get(string email)
-        {
-            var fileName = $"{email}.json";
-            return _storage.DownloadText(fileName, ContainerName);
-        }
-    }
+		{
+			var fileName = $"{email}.json";
+			return _storage.DownloadText(fileName, ContainerName);
+		}
+	}
 }
