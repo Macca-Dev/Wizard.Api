@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using NLog;
 using Estable.Lib.Contracts;
+using Estable.Lib.Extensions;
 using Wizard.Api.Services.Interfaces;
 using Estable.Lib.Mappers;
 using Wizard.Api.Validation;
@@ -32,7 +33,7 @@ namespace Wizard.Api.Controllers
 
 			var problems = _animalService.Save(horses);
 
-			if (problems != null)
+			if (problems.IsNotNullOrEmpty())
 			{
 				return Content(HttpStatusCode.BadRequest, problems);
 			}

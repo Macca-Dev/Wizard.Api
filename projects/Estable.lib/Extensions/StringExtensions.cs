@@ -12,5 +12,9 @@ namespace Estable.Lib.Extensions
 		{
 			return arg == null || arg == string.Empty;
 		}
+		public static bool IsNotNullOrEmpty(this string arg)
+		{
+			return false == (arg == null || arg == string.Empty);
+		}
 	}
 }

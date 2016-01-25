@@ -4,6 +4,7 @@ using System.Web.Http.Cors;
 using NLog;
 using Estable.Lib.Mappers;
 using Estable.Lib.Contracts;
+using Estable.Lib.Extensions;
 using Wizard.Api.Services.Interfaces;
 using Wizard.Api.Validation;
 
@@ -32,7 +33,7 @@ namespace Wizard.Api.Controllers
 			Logger.Info($"Email: {stable.StableEmail} attempting to save stable information");
 
 			var problems = _stableService.Save(stable);
-			if (problems != null)
+			if (problems.IsNotNullOrEmpty())
 			{
 				return Content(HttpStatusCode.BadRequest, problems);
 			}

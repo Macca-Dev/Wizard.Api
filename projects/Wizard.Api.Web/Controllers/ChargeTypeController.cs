@@ -33,7 +33,7 @@ namespace Wizard.Api.Controllers
 
 			var problems = _chargeTypeService.Save(chargeTypes);
 
-			if (problems.IsNullOrEmpty())
+			if (problems.IsNotNullOrEmpty())
 			{
 				return Content(HttpStatusCode.BadRequest, problems);
 			}
