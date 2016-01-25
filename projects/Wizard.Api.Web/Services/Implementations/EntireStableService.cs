@@ -50,7 +50,7 @@ namespace Wizard.Api.Services.Implementations
 		{
 			var stable = new EntireStableContract
 			{
-				Metadata = _stableService.Get(email).FromJson<StableDataContract>(),
+				Metadata = _stableService.Get(email),
 				FinancialData = _financialService.Get(email).FromJson<FinancialContract>(),
 				ChargeTypes = _chargeTypeService.Get(email).FromJson<ChargeTypesContract>(),
 				Horses = _animalService.Get(email).FromJson<HorsesContract>()

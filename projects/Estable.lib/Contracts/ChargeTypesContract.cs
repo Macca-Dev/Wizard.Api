@@ -7,7 +7,6 @@ namespace Estable.Lib.Contracts
 	{
 		public IEnumerable<StableChargeType> StableChargeTypes { get; set; }
 		public IEnumerable<StandardChargeType> StandardChargeTypes { get; set; }
-
 		public string ToJson =>
 			this.ToJson<ChargeTypesContract>();
 	}

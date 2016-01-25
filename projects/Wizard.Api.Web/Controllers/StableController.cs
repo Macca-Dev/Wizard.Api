@@ -59,7 +59,7 @@ namespace Wizard.Api.Controllers
 			{
 				var obj = new StableDataContract();
 				_stableService.SaveWithoutValidation(obj);
-				stable = obj.ToJson;
+				stable = obj;
 			}
 
 			return Content(HttpStatusCode.OK, stable);
