@@ -6,6 +6,6 @@ namespace Wizard.Api.Services.Interfaces
     public interface IStableService
     {
         string Get(string email);
-        void Save(StableDataContract stable);
+        string Save(StableDataContract stable);
     }
 }

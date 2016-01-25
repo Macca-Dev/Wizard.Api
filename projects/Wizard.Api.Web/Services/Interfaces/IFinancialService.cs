@@ -5,7 +5,7 @@ namespace Wizard.Api.Services.Interfaces
 {
     public interface IFinancialService
     {
-        void Save(FinancialContract financial);
+        string Save(FinancialContract financial);
         string Get(string email);
     }
 }

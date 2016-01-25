@@ -159,6 +159,7 @@
     <Compile Include="App_Start\NinjectHttp.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ChargeTypeController.cs" />
+    <Compile Include="Controllers\EntireStableController.cs" />
     <Compile Include="Controllers\FinancialController.cs" />
     <Compile Include="Controllers\HorseController.cs" />
     <Compile Include="IoC\Modules\AzureModule.cs" />
@@ -172,10 +173,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implementations\AnimalService.cs" />
     <Compile Include="Services\Implementations\ChargeTypeService.cs" />
+    <Compile Include="Services\Implementations\EntireStableService.cs" />
     <Compile Include="Services\Implementations\FinancialService.cs" />
     <Compile Include="Services\Implementations\StableService.cs" />
     <Compile Include="Services\Interfaces\IAnimalService.cs" />
     <Compile Include="Services\Interfaces\IChargeTypeService.cs" />
+    <Compile Include="Services\Interfaces\IEntireStableService.cs" />
     <Compile Include="Services\Interfaces\IFinancialService.cs" />
     <Compile Include="Services\Interfaces\IStableService.cs" />
     <Compile Include="Validation\ChargeTypeValidator.cs" />

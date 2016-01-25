@@ -13,14 +13,10 @@ namespace Wizard.Api.Controllers
 	public class ChargeTypeController : ApiController
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private readonly ChargeTypeValidator _validator;
-        private readonly IInvalidDataProblemMapper _problemMapper;
         private readonly IChargeTypeService _chargeTypeService;
 
-        public ChargeTypeController(ChargeTypeValidator validator, IInvalidDataProblemMapper problemMapper, IChargeTypeService chargeTypeService)
+        public ChargeTypeController(IChargeTypeService chargeTypeService)
         {
-            _validator = validator;
-            _problemMapper = problemMapper;
             _chargeTypeService = chargeTypeService;
         }
 
@@ -30,15 +26,13 @@ namespace Wizard.Api.Controllers
         {
             Logger.Info($"Email: {chargeTypes.StableEmail} attempting to save charge types");
 
-            var validation = _validator.Validate(chargeTypes);
+            var problems = _chargeTypeService.Save(chargeTypes);
 
-            if (false == validation.IsValid)
+			if (null != problems)
             {
-                var result = _problemMapper.Map(validation.Errors).ToJson;
-                return Content(HttpStatusCode.BadRequest, result);
+                return Content(HttpStatusCode.BadRequest, problems);
             }
-
-            _chargeTypeService.Save(chargeTypes);
+			            
             return Ok();
         }
 

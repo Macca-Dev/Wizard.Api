@@ -2,10 +2,8 @@
 using System.Web.Http;
 using System.Web.Http.Cors;
 using NLog;
-using Estable.Lib.Mappers;
 using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
-using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
@@ -13,15 +11,11 @@ namespace Wizard.Api.Controllers
     public class HorseController : ApiController
     {
         private readonly IAnimalService _animalService;
-        private readonly HorsesValidator _validator;
-        private readonly IInvalidDataProblemMapper _problemMapper;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public HorseController(IAnimalService animalService , HorsesValidator validator, IInvalidDataProblemMapper problemMapper)
+        public HorseController(IAnimalService animalService)
         {
             _animalService = animalService;
-            _validator = validator;
-            _problemMapper = problemMapper;
         }
 
         [HttpPost]
@@ -30,15 +24,12 @@ namespace Wizard.Api.Controllers
         {
             Logger.Info($"Email: {horses.StableEmail} attempting to save horses.");
 
-            var validation = _validator.Validate(horses);
+            var problems = _animalService.Save(horses);
 
-            if (false == validation.IsValid)
-            {
-                var result = _problemMapper.Map(validation.Errors).ToJson;
-                return Content(HttpStatusCode.BadRequest, result);
-            }
-
-            _animalService.Save(horses);
+			if(problems != null)
+			{
+				return Content(HttpStatusCode.BadRequest, problems);
+			}
             
             return Ok();
         }

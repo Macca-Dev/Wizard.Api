@@ -9,21 +9,16 @@ using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
-    //[RoutePrefix("v1")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StableController : ApiController
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IStableService _stableService;
-        private readonly StableValidator _validator;
-        private readonly IInvalidDataProblemMapper _problemMapper;
 
         public StableController(IStableService stableService, StableValidator validator, IInvalidDataProblemMapper problemMapper)
         {
             _stableService = stableService;
-            _validator = validator;
-            _problemMapper = problemMapper;
         }
 
         [HttpPost]
@@ -32,16 +27,12 @@ namespace Wizard.Api.Controllers
         {
             Logger.Info($"Email: {stable.StableEmail} attempting to save stable information");
 
-            var failures = _validator.Validate(stable);
+            var problems = _stableService.Save(stable);
+			if(problems != null)
+			{
+				return Content(HttpStatusCode.BadRequest, problems);
+			}
 
-            if (!failures.IsValid)
-            {
-                var result = _problemMapper.Map(failures.Errors).ToJson;
-
-                return Content(HttpStatusCode.BadRequest, result);
-            }
-             
-            _stableService.Save(stable);
             return Ok();
         }
 

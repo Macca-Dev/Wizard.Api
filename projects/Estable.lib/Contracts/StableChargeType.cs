@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Estable.Lib.Extensions;
+﻿using Estable.Lib.Extensions;
 
 namespace Estable.Lib.Contracts
 {
@@ -10,6 +7,8 @@ namespace Estable.Lib.Contracts
 		public long Id { get; set; }
 		public string Description { get; set; }
 		public string Rate { get; set; }
+		public bool InStable { get; set; }
+		public string Unit { get; set; }
 
 		public string ToJson =>
 			this.ToJson<StableChargeType>();

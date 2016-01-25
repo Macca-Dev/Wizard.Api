@@ -3,23 +3,41 @@ using Estable.Lib.Adapters;
 using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
 using Estable.Lib;
+using Wizard.Api.Validation;
+using Estable.Lib.Mappers;
 
 namespace Wizard.Api.Services.Implementations
 {
     public class ChargeTypeService : IChargeTypeService
     {
         private readonly IStorageAdapter _storage;
+		private readonly ChargeTypeValidator _validator;
+        private readonly IInvalidDataProblemMapper _problemMapper;
         private const string ContainerName = Codes.Azure.Containers.ChargeTypes;
 
-        public ChargeTypeService(IStorageAdapter storage)
+        public ChargeTypeService(
+			IStorageAdapter storage, 
+			ChargeTypeValidator validator, 
+			IInvalidDataProblemMapper problemMapper)
         {
             _storage = storage;
+			_validator = validator;
+			_problemMapper = problemMapper;
         }
 
-        public void Save(ChargeTypesContract chargeTypes)
+        public string Save(ChargeTypesContract chargeTypes)
         {
-            var fileName = $"{chargeTypes.StableEmail}.json";
+			var problems = _validator.Validate(chargeTypes);
+
+			if(false == problems.IsValid)
+			{
+				return _problemMapper.Map(problems.Errors).ToJson;
+			}
+
+			var fileName = $"{chargeTypes.StableEmail}.json";
             _storage.UploadText(fileName, chargeTypes.ToJson, ContainerName);
+
+			return null;
         }
 
         public string Get(string email)
