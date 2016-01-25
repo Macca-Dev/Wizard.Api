@@ -58,7 +58,7 @@ namespace Wizard.Api.Controllers
 			{
 				var obj = new HorsesContract();
 				_animalService.SaveWithoutValidation(obj);
-				horses = obj.ToJson;
+				horses = obj;
 			}
 
 			return Content(HttpStatusCode.OK, horses);

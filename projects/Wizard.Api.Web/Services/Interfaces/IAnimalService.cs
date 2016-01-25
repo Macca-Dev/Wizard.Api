@@ -6,6 +6,6 @@ namespace Wizard.Api.Services.Interfaces
 	{
 		string Save(HorsesContract horses);
 		void SaveWithoutValidation(HorsesContract horses);
-		string Get(string email);
+		HorsesContract Get(string email);
 	}
 }

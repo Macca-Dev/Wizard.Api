@@ -2,10 +2,10 @@
 
 namespace Wizard.Api.Services.Interfaces
 {
-    public interface IChargeTypeService
-    {
-        string Save(ChargeTypesContract chargeTypes);
+	public interface IChargeTypeService
+	{
+		string Save(ChargeTypesContract chargeTypes);
 		void SaveWithoutValidation(ChargeTypesContract chargeTypes);
-        string Get(string email);
-    }
+		ChargeTypesContract Get(string email);
+	}
 }

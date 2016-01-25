@@ -1,5 +1,6 @@
 ﻿using Estable.Lib.Adapters;
 using Estable.Lib.Contracts;
+using Estable.Lib.Extensions;
 using Wizard.Api.Services.Interfaces;
 using Estable.Lib;
 using Wizard.Api.Validation;
@@ -45,10 +46,10 @@ namespace Wizard.Api.Services.Implementations
 			_storage.UploadText(fileName, financial.ToJson, ContainerName);
 		}
 
-		public string Get(string email)
+		public FinancialContract Get(string email)
 		{
 			var fileName = $"{email}.json";
-			return _storage.DownloadText(fileName, ContainerName);
+			return _storage.DownloadText(fileName, ContainerName).FromJson<FinancialContract>();
 		}
 	}
 }

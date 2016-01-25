@@ -7,6 +7,6 @@ namespace Wizard.Api.Services.Interfaces
 	{
 		string Save(FinancialContract financial);
 		void SaveWithoutValidation(FinancialContract financial);
-		string Get(string email);
+		FinancialContract Get(string email);
 	}
 }

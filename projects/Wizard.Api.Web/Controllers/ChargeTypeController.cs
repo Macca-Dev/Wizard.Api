@@ -59,7 +59,7 @@ namespace Wizard.Api.Controllers
 			{
 				var charges = new ChargeTypesContract();
 				_chargeTypeService.SaveWithoutValidation(charges);
-				chargeTypes = charges.ToJson;
+				chargeTypes = charges;
 			}
 
 			return Content(HttpStatusCode.OK, chargeTypes);

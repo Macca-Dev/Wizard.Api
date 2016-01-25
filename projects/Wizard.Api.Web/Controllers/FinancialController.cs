@@ -60,7 +60,7 @@ namespace Wizard.Api.Controllers
 			{
 				var obj = new FinancialContract();
 				_financialService.SaveWithoutValidation(obj);
-				financial = obj.ToJson;
+				financial = obj;
 			}
 
 			return Content(HttpStatusCode.OK, financial);
