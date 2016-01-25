@@ -6,6 +6,7 @@ using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
 using Wizard.Api.Validation;
 using System.Web.Http.Cors;
+using Estable.Lib.Extensions;
 
 namespace Wizard.Api.Controllers
 {
@@ -28,7 +29,7 @@ namespace Wizard.Api.Controllers
 
             var problems = _chargeTypeService.Save(chargeTypes);
 
-			if (null != problems)
+			if (problems.IsNullOrEmpty())
             {
                 return Content(HttpStatusCode.BadRequest, problems);
             }

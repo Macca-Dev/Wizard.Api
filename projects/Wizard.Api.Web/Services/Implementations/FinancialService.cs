@@ -36,7 +36,7 @@ namespace Wizard.Api.Services.Implementations
 			var fileName = $"{financial.StableEmail}.json";
             _storage.UploadText(fileName, financial.ToJson, ContainerName);
 
-			return null;
+			return string.Empty;
         }
 
         public string Get(string email)

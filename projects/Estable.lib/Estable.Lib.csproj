@@ -96,6 +96,7 @@
     <Compile Include="Contracts\StableDataContract.cs" />
     <Compile Include="Contracts\StandardChargeType.cs" />
     <Compile Include="Extensions\JsonSerializableExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Mappers\IInvalidDataProblemMapper.cs" />
     <Compile Include="Mappers\Impl\InvalidDataProblemMapper.cs" />
     <Compile Include="Problems\InvalidDataProblem.cs" />

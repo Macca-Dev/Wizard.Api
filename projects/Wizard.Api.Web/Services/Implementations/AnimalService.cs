@@ -33,7 +33,7 @@ namespace Wizard.Api.Services.Implementations
 			var fileName = $"{horses.StableEmail}.json";
             _storage.UploadText(fileName, horses.ToJson, ContainerName);
 
-			return null;
+			return string.Empty;
         }
 
         public string Get(string email)

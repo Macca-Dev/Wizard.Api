@@ -4,6 +4,7 @@ namespace Wizard.Api.Services.Interfaces
 {
 	public interface IEntireStableService
 	{
-		void Save(EntireStableContract contract);
+		string Save(EntireStableContract contract);
+		string Get(string email);
 	}
 }

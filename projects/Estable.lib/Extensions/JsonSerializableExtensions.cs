@@ -17,8 +17,13 @@ namespace Estable.Lib.Extensions
 			}
 		}
 
-		public static T FromJson<T>(this string obj)
+		public static T FromJson<T>(this string obj) where T : new()
 		{
+			if (obj.IsNullOrEmpty())
+			{
+				return new T();
+			}
+
 			using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(obj)))
 			{
 				var serializer = new DataContractJsonSerializer(typeof(T));

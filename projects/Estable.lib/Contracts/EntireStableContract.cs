@@ -4,7 +4,7 @@ namespace Estable.Lib.Contracts
 {
 	public class EntireStableContract : JsonSerializable
 	{
-		public StableDataContract Metadatadata { get; set; }
+		public StableDataContract Metadata { get; set; }
 		public FinancialContract FinancialData { get; set; }
 		public ChargeTypesContract ChargeTypes { get; set; }
 		public HorsesContract Horses { get; set; }
