@@ -40,7 +40,13 @@ namespace Wizard.Api.Services.Implementations
 			return string.Empty;
         }
 
-        public string Get(string email)
+		public void SaveWithoutValidation(ChargeTypesContract chargeTypes)
+		{
+			var fileName = $"{chargeTypes.StableEmail}.json";
+			_storage.UploadText(fileName, chargeTypes.ToJson, ContainerName);
+		}
+
+		public string Get(string email)
         {
             var fileName = $"{email}.json";
             return _storage.DownloadText(fileName, ContainerName);

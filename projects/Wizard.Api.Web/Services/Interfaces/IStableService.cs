@@ -7,5 +7,6 @@ namespace Wizard.Api.Services.Interfaces
     {
         string Get(string email);
         string Save(StableDataContract stable);
+		void SaveWithoutValidation(StableDataContract stable);
     }
 }

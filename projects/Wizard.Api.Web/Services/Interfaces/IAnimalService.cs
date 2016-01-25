@@ -5,6 +5,7 @@ namespace Wizard.Api.Services.Interfaces
     public interface IAnimalService
     {
         string Save(HorsesContract horses);
-        string Get(string email);
+		void SaveWithoutValidation(HorsesContract horses);
+		string Get(string email);
     }
 }

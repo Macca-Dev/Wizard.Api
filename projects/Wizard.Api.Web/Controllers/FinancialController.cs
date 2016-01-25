@@ -4,19 +4,24 @@ using System.Web.Http.Cors;
 using NLog;
 using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
+using Estable.Lib.Mappers;
+using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class FinancialController : ApiController
+    public class FinancialController : WizardControllerBase
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IFinancialService _financialService;
 
-        public FinancialController(
-            IFinancialService financialService)
-        {
+		public FinancialController(
+            IFinancialService financialService,
+			EmailValidator emailValidator,
+			IInvalidDataProblemMapper problemMapper)
+			: base(emailValidator, problemMapper)
+		{
             _financialService = financialService;
         }
 
@@ -41,11 +46,21 @@ namespace Wizard.Api.Controllers
         public IHttpActionResult GetByEmail(string email)
         {
             Logger.Info($"Email: {email} asked for its financial data");
-            var financial = _financialService.Get(email);
+
+			var validation = ValidateGetRequest(email);
+
+			if (validation != null)
+			{
+				return validation;
+			}
+
+			var financial = _financialService.Get(email);
 
             if(null == financial)
             {
-                return NotFound();
+				var obj = new FinancialContract();
+				_financialService.SaveWithoutValidation(obj);
+				financial = obj.ToJson;
             }
 
             return Content(HttpStatusCode.OK, financial);

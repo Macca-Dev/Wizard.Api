@@ -11,45 +11,58 @@ using Estable.Lib.Extensions;
 namespace Wizard.Api.Controllers
 {
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
-	public class ChargeTypeController : ApiController
-    {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private readonly IChargeTypeService _chargeTypeService;
+	public class ChargeTypeController : WizardControllerBase
+	{
+		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+		private readonly IChargeTypeService _chargeTypeService;
 
-        public ChargeTypeController(IChargeTypeService chargeTypeService)
-        {
-            _chargeTypeService = chargeTypeService;
-        }
+		public ChargeTypeController(
+			IChargeTypeService chargeTypeService,
+			EmailValidator emailValidator,
+			IInvalidDataProblemMapper problemMapper) 
+			: base(emailValidator, problemMapper)
+		{
+			_chargeTypeService = chargeTypeService;
+		}
 
-        [HttpPost]
-        [Route("chargetypes")]
-        public IHttpActionResult Create([FromBody] ChargeTypesContract chargeTypes)
-        {
-            Logger.Info($"Email: {chargeTypes.StableEmail} attempting to save charge types");
+		[HttpPost]
+		[Route("chargetypes")]
+		public IHttpActionResult Create([FromBody] ChargeTypesContract chargeTypes)
+		{
+			Logger.Info($"Email: {chargeTypes.StableEmail} attempting to save charge types");
 
-            var problems = _chargeTypeService.Save(chargeTypes);
+			var problems = _chargeTypeService.Save(chargeTypes);
 
 			if (problems.IsNullOrEmpty())
-            {
-                return Content(HttpStatusCode.BadRequest, problems);
-            }
-			            
-            return Ok();
-        }
+			{
+				return Content(HttpStatusCode.BadRequest, problems);
+			}
 
-        [HttpGet]
-        [Route("chargeTypes/{email}")]
-        public IHttpActionResult GetByEmail(string email)
-        {
-            Logger.Info("Email:{0} asked for there charge type data", email);
+			return Ok();
+		}
 
-            var chargeTypes = _chargeTypeService.Get(email);
-            if (chargeTypes == null)
-            {
-                return NotFound();
-            }
+		[HttpGet]
+		[Route("chargeTypes/{email}")]
+		public IHttpActionResult GetByEmail(string email)
+		{
+			Logger.Info("Email:{0} asked for there charge type data", email);
 
-            return Content(HttpStatusCode.OK, chargeTypes);
-        }
-    }
+			var validation = ValidateGetRequest(email);
+
+			if(validation != null)
+			{
+				return validation;
+			}
+
+			var chargeTypes = _chargeTypeService.Get(email);
+			if (chargeTypes == null)
+			{
+				var charges = new ChargeTypesContract();
+				_chargeTypeService.SaveWithoutValidation(charges);
+				chargeTypes = charges.ToJson;
+			}
+
+			return Content(HttpStatusCode.OK, chargeTypes);
+		}
+	}
 }

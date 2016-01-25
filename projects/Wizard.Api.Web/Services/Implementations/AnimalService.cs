@@ -36,6 +36,11 @@ namespace Wizard.Api.Services.Implementations
 			return string.Empty;
         }
 
+		public void SaveWithoutValidation(HorsesContract horses)
+		{
+			var fileName = $"{horses.StableEmail}.json";
+			_storage.UploadText(fileName, horses.ToJson, ContainerName);
+		}
         public string Get(string email)
         {
             var fileName = $"{email}.json";

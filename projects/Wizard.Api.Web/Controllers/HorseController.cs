@@ -4,17 +4,23 @@ using System.Web.Http.Cors;
 using NLog;
 using Estable.Lib.Contracts;
 using Wizard.Api.Services.Interfaces;
+using Estable.Lib.Mappers;
+using Wizard.Api.Validation;
 
 namespace Wizard.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class HorseController : ApiController
+    public class HorseController : WizardControllerBase
     {
         private readonly IAnimalService _animalService;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public HorseController(IAnimalService animalService)
-        {
+        public HorseController(
+			IAnimalService animalService,
+			EmailValidator emailValidator,
+			IInvalidDataProblemMapper problemMapper)
+			: base(emailValidator, problemMapper)
+		{
             _animalService = animalService;
         }
 
@@ -40,11 +46,20 @@ namespace Wizard.Api.Controllers
         {
             Logger.Info($"Email: {email} asked for there horse data");
 
-            var horses = _animalService.Get(email);
+			var validation = ValidateGetRequest(email);
+
+			if (validation != null)
+			{
+				return validation;
+			}
+
+			var horses = _animalService.Get(email);
             if (horses == null)
             {
-                return NotFound();
-            }
+				var obj = new HorsesContract();
+				_animalService.SaveWithoutValidation(obj);
+				horses = obj.ToJson;
+			}
 
             return Content(HttpStatusCode.OK, horses);
         }

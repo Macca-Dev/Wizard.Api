@@ -10,14 +10,18 @@ using Wizard.Api.Validation;
 namespace Wizard.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class StableController : ApiController
+    public class StableController : WizardControllerBase
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IStableService _stableService;
 
-        public StableController(IStableService stableService, StableValidator validator, IInvalidDataProblemMapper problemMapper)
-        {
+        public StableController(
+			IStableService stableService,
+			EmailValidator emailValidator,
+			IInvalidDataProblemMapper problemMapper)
+			: base(emailValidator, problemMapper)
+		{
             _stableService = stableService;
         }
 
@@ -41,11 +45,21 @@ namespace Wizard.Api.Controllers
         public IHttpActionResult GetByEmail(string email)
         {
             Logger.Info($"Email: {email} asked for data on it's stable");
-            var stable = _stableService.Get(email);
+
+			var validation = ValidateGetRequest(email);
+
+			if (validation != null)
+			{
+				return validation;
+			}
+
+			var stable = _stableService.Get(email);
             
             if(null == stable)
             {
-                return NotFound();
+				var obj = new StableDataContract();
+				_stableService.SaveWithoutValidation(obj);
+				stable = obj.ToJson;
             }
 
             return Content(HttpStatusCode.OK, stable);
