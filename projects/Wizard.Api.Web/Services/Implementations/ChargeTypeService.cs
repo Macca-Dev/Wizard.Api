@@ -49,7 +49,14 @@ namespace Wizard.Api.Services.Implementations
 		public ChargeTypesContract Get(string email)
 		{
 			var fileName = $"{email}.json";
-			return _storage.DownloadText(fileName, ContainerName).FromJson<ChargeTypesContract>(); ;
+			var file = _storage.DownloadText(fileName, ContainerName);
+
+			if (file == null)
+			{
+				return null;
+			}
+
+			return file.FromJson<ChargeTypesContract>();
 		}
 	}
 }
